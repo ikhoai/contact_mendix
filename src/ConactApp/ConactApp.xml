@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="ConactApp.widget.ConactApp" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>ConactApp</name>
+    <description>The description of this widget.</description>
+
+    <icon />
+
+    <properties>
+        <property key="CustomerEntity" type="entity" required="true">
+            <caption>Customer Entity</caption>
+            <category>Customer Entity</category>
+            <description>CustomerEntity description</description>
+        </property>
+        <property key="Email" type="attribute" required="true" entityProperty="CustomerEntity">
+            <caption>email</caption>
+            <category>email category</category>
+            <description>email description</description>
+            <attributeTypes>
+            <attributeType name="String"/>
+        </attributeTypes>
+        </property>
+        <property key="Name" type="attribute" required="true" entityProperty="CustomerEntity">
+            <caption>Name</caption>
+            <category>name category</category>
+            <description>name description</description>
+            <attributeTypes>
+            <attributeType name="String"/>
+        </attributeTypes>
+        </property>
+
+         <property key="InputField" type="attribute" required="true">
+            <caption>From</caption>
+            <category>From category</category>
+            <description>From description</description>
+            <attributeTypes>
+            <attributeType name="String"/>
+        </attributeTypes>
+        </property> 
+        <property key="maxItems" type="integer" required="true" defaultValue="1">
+            <caption>Max Customer Invitation</caption>
+            <category>Max Customer Invitation</category>
+            <description>This key was added to make the widget work in the Modeler (needs atleast 1 key). Please change/remove this one</description>
+        </property>
+        <property key="placeHolder" type="string" required="true" defaultValue=" ">
+            <caption>Placeholder Caption</caption>
+            <category>Placeholder Category</category>
+            <description>This key was added to make the widget work in the Modeler (needs atleast 1 key). Please change/remove this one</description>
+        </property>
+    </properties>
+</widget>
