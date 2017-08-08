@@ -4,7 +4,16 @@
     <description>The description of this widget.</description>
 
     <icon />
+    <!--
+        make name more generic, we don't always work with contact, customer, email, name, invitation
 
+        refactor category
+        todo: now customerENtity is entity, and we get all of them form database
+        so that could be too much, normally, user want to have a constraint on what they want to get.
+        todo: add other option from lib besides maxItems and place holder
+        todo: for other entity (not customer) we don't always have 2 attributes (email & name) to construct the text in items of the seletize,
+        what we should do in that case?
+    -->
     <properties>
         <property key="CustomerEntity" type="entity" required="true">
             <caption>Customer Entity</caption>
@@ -16,26 +25,26 @@
             <category>email category</category>
             <description>email description</description>
             <attributeTypes>
-            <attributeType name="String"/>
-        </attributeTypes>
+                <attributeType name="String"/>
+            </attributeTypes>
         </property>
         <property key="Name" type="attribute" required="true" entityProperty="CustomerEntity">
             <caption>Name</caption>
             <category>name category</category>
             <description>name description</description>
             <attributeTypes>
-            <attributeType name="String"/>
-        </attributeTypes>
+                <attributeType name="String"/>
+            </attributeTypes>
         </property>
 
-         <property key="InputField" type="attribute" required="true">
+        <property key="InputField" type="attribute" required="true">
             <caption>From</caption>
             <category>From category</category>
             <description>From description</description>
             <attributeTypes>
-            <attributeType name="String"/>
-        </attributeTypes>
-        </property> 
+                <attributeType name="String"/>
+            </attributeTypes>
+        </property>
         <property key="maxItems" type="integer" required="true" defaultValue="1">
             <caption>Max Customer Invitation</caption>
             <category>Max Customer Invitation</category>
