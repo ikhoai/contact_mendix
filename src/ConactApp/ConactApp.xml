@@ -15,6 +15,74 @@
         what we should do in that case?
     -->
     <properties>
+    <property key="selectedTemplate" type="translatableString" required="true" multiline="false">
+            <caption>Selected Template</caption>
+            <category>Result display</category>
+            <description>Use ${VARIABLE_NAME} to have the attribute value inserted in this string. Note that this string (including replacements) is interpreted as Plain Text. </description>
+        </property>
+        <property key="displayTemplate" type="translatableString" required="false" multiline="true">
+            <caption>Result Template</caption>
+            <category>Result display</category>
+            <description>Use ${VARIABLE_NAME} to have the attribute value inserted in this string. Note that this string, except for the replacements, is interpreted as HTML. </description>
+        </property>
+        <property key="_variableContainer" type="object" isList="true" required="true">
+            <caption>Template Attributes</caption>
+            <category>Result display</category>
+            <description></description>
+            <properties>
+                <property key="variableName" type="string" required="true">
+                    <caption>Variable name</caption>
+                    <category>Data source</category>
+                    <description>Identifies the attribute value, this name should be used in 'Item Template' property.</description>
+                </property>
+                <property key="variableAttribute" type="attribute" allowNonPersistableEntities="true" isPath="optional" pathType="reference" entityProperty="../CustomerEntity">
+                    <caption>Attribute</caption>
+                    <category>Data source</category>
+                    <description>Value of this attribute will be used to replace ${VARIABLE_NAME}, defined in 'Item Template' property</description>
+                    <attributeTypes>
+                        <attributeType name="AutoNumber"/>
+                        <attributeType name="String" />
+                        <attributeType name="Enum"/>
+                        <attributeType name="Integer"/>
+                        <attributeType name="Float"/>
+                        <attributeType name="Currency"/>
+                        <attributeType name="Decimal"/>
+                        <attributeType name="Long"/>
+                        <attributeType name="DateTime"/>
+                    </attributeTypes>
+                </property>
+                <property key="datetimeformat" type="enumeration" defaultValue="datetime" >
+                    <caption>Date format</caption>
+                    <category>Behaviour</category>
+                    <description>Shows date and/or time according to locale of user.</description>
+                    <enumerationValues>
+                        <enumerationValue key="datetime">Date and time </enumerationValue>
+                        <enumerationValue key="date">Date</enumerationValue>
+                        <enumerationValue key="time">Time</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="datePattern" type="translatableString" required="false">
+                    <caption>Date pattern</caption>
+                    <category>Behaviour</category>
+                    <description>Optional, date pattern to override date part according to dojo/date/locale</description>
+                </property>
+                <property key="timePattern" type="translatableString" required="false">
+                    <caption>Time pattern</caption>
+                    <category>Behaviour</category>
+                    <description>Optional, time pattern to override time part according to dojo/date/locale</description>
+                </property>
+                <property key="decimalPrecision" type="integer" defaultValue="0">
+                    <caption>Decimal precision</caption>
+                    <category>Behaviour</category>
+                    <description>Amount of decimals</description>
+                </property>
+                <property key="groupDigits" type="boolean" defaultValue="true">
+                    <caption>Group digits</caption>
+                    <category>Behaviour</category>
+                    <description>Displays a numeric value with group digits</description>
+                </property>
+            </properties>
+        </property>  
         <property key="CustomerEntity" type="entity" required="true">
             <caption>Customer Entity</caption>
             <category>Customer Entity</category>

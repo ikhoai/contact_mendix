@@ -25,6 +25,9 @@ define([
     return declare("ConactApp.widget.ConactApp", [_WidgetBase, _TemplatedMixin], {
 
         templateString: widgetTemplate,
+        _attributeList: null,
+        _displayTemplate: "",
+        _selectedTemplate: "",
 
 
         widgetBase: null,
@@ -40,6 +43,11 @@ define([
         postCreate: function() {
 
             logger.debug(this.id + ".postCreate");
+
+
+            this._attributeList = this._variableContainer;
+            this._displayTemplate = this.displayTemplate;
+            this._selectedTemplate = this.selectedTemplate;
 
         },
 
