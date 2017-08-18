@@ -21,17 +21,17 @@
             <description>CustomerEntity description</description>
         </property>
         <property key="Email" type="attribute" required="true" entityProperty="CustomerEntity">
-            <caption>email</caption>
-            <category>email category</category>
-            <description>email description</description>
+            <caption>Email</caption>
+            <category>Basic Information</category>
+            <description>Select email for attribute</description>
             <attributeTypes>
                 <attributeType name="String"/>
             </attributeTypes>
         </property>
         <property key="Name" type="attribute" required="true" entityProperty="CustomerEntity">
             <caption>Name</caption>
-            <category>name category</category>
-            <description>name description</description>
+            <category>Basic Information</category>
+            <description>Select name for attribute</description>
             <attributeTypes>
                 <attributeType name="String"/>
             </attributeTypes>
@@ -39,21 +39,26 @@
 
         <property key="InputField" type="attribute" required="true">
             <caption>From</caption>
-            <category>From category</category>
-            <description>From description</description>
+            <category>Input Field</category>
+            <description>This is the input field</description>
             <attributeTypes>
                 <attributeType name="String"/>
             </attributeTypes>
         </property>
         <property key="maxItems" type="integer" required="true" defaultValue="1">
             <caption>Max Customer Invitation</caption>
-            <category>Max Customer Invitation</category>
-            <description>This key was added to make the widget work in the Modeler (needs atleast 1 key). Please change/remove this one</description>
+            <category>Options</category>
+            <description>This is the options for number of customers allowed</description>
         </property>
         <property key="placeHolder" type="string" required="true" defaultValue=" ">
             <caption>Placeholder Caption</caption>
-            <category>Placeholder Category</category>
-            <description>This key was added to make the widget work in the Modeler (needs atleast 1 key). Please change/remove this one</description>
+            <category>Options</category>
+            <description>This is the placeholder text if nothing is input</description>
+        </property>
+         <property key="template" type="string" required="true" defaultValue=" ">
+            <caption>tpl Caption</caption>
+            <category>tpl Category</category>
+            <description>tpl key was added to make the widget work in the Modeler (needs atleast 1 key). Please change/remove this one</description>
         </property>
     </properties>
 </widget>

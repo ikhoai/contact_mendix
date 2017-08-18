@@ -50,56 +50,36 @@ define([
 
                     let customerList = objs.map(obj => {
                         return {
-                            email: obj.get(this.Email),
-                            name: obj.get(this.Name)
+                            attr_2: obj.get(this.Name),
+                            attr_1: obj.get(this.Email)
+                            
                         };
                     })
                     console.log(customerList);
-                    //console.log(objs.map(obj => {obj.jsonData.attributes.Email.value}));
                     this.getCustomerIntoField(customerList);
                 }.bind(this)
             })
         },
-        // saveInvitationData: function(from, to) {
-        //     mx.data.create({
-        //         entity: "TestSuite.Invitation", 
-        //         callback: function(obj) {
-        //             console.log("Object created on server")
-        //             console.log(obj);
-        //         }, 
-        //         error: function(e) {
-        //             console.log("an error occured" + e); 
-        //         }
-        //     })
-        // },
         getCustomerIntoField: function(customerList) {
 
             var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
                 '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
 
-            //$(this.selectTo).val("khoai@gmail.com");
-            //this.inputText.value = "test";
-            // this.selectTo.value="test";    
             var preLoadValue = [];
-            var preLoadFromValue = this._contextObj.jsonData.attributes.From.value; //use get("attribute")
-            var preLoadToValue = this._contextObj.jsonData.attributes.To.value; //unused variable?
+            const FROM_FLIELD = "From"; 
+            const TO_FIELD = "To";
+           
             if (this.maxItems === 1) {
-                preLoadValue.push(this._contextObj.jsonData.attributes.From.value); //? From ?
+                preLoadValue.push(this._contextObj.get(FROM_FLIELD));
             } else {
-                var toValue = this._contextObj.jsonData.attributes.To.value; //where "To" come from?
-                if (toValue.indexOf(',') > -1) { //do we need this?
+                var toValue = this._contextObj.get(TO_FIELD);
                     preLoadValue = toValue.split(',');
-                } else {
-                    preLoadValue.push(toValue);
-                }
-
             }
             var $select = $(this.selectTo).selectize({
-                persist: true, //do we need this?
                 maxItems: this.maxItems,
-                valueField: 'email',
-                labelField: 'name',
-                searchField: ['name', 'email'],
+                valueField: 'attr_1',
+                labelField: 'attr_2',
+                searchField: ['attr_2', 'attr_1'],
                 items: preLoadValue,
                 options: customerList,
                 placeholder: this.placeHolder,
@@ -114,7 +94,7 @@ define([
                         entity: "TestSuite.Invitation",
                         callback: function(obj) {
                             console.log("Object created on server")
-                            console.log(obj);
+                           // console.log(obj);
                         },
                         error: function(e) {
                             console.log("an error occured" + e);
@@ -124,9 +104,13 @@ define([
                 }.bind(this),
                 render: { //how we can make the render customizeable instead of hard code? (user should be able to config this as template in widget)
                     item: function(item, escape) {
+                        console.log(item);
                         return '<div>' +
-                            (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-                            (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                            (item.attr_2 ? '<span class="name">' + escape(item.attr_2) + '</span>' : '') +
+                            (item.attr_1 ? '<span class="email">' + escape(item.attr_1) + '</span>' : '') +
+                            (item.attr_3 ? '<span class="email">' + escape(item.attr_3) + '</span>' : '') +
+                            (item.attr_4 ? '<span class="email">' + escape(item.attr_4) + '</span>' : '') +
+                            (item.attr_5 ? '<span class="email">' + escape(item.attr_5) + '</span>' : '')
                             '</div>';
                     },
                     option: function(item, escape) {
@@ -137,37 +121,37 @@ define([
                             (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
                             '</div>';
                     }
-                },
-                createFilter: function(input) { //unused function?
-                    var match, regex;
-                    // email@address.com
-                    regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-                    match = input.match(regex);
-                    if (match) return !this.options.hasOwnProperty(match[0]);
-
-                    // name <email@address.com>
-                    regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
-                    match = input.match(regex);
-                    if (match) return !this.options.hasOwnProperty(match[2]);
-
-                    return false;
-                },
-                create: function(input) { //unused funciton?
-                    if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-                        return {
-                            email: input
-                        };
-                    }
-                    var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-                    if (match) {
-                        return {
-                            email: match[2],
-                            name: $.trim(match[1])
-                        };
-                    }
-                    alert('Invalid email address.');
-                    return false;
                 }
+                // createFilter: function(input) { //unused function?
+                //     var match, regex;
+                //     // email@address.com
+                //     regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                //     match = input.match(regex);
+                //     if (match) return !this.options.hasOwnProperty(match[0]);
+
+                //     // name <email@address.com>
+                //     regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                //     match = input.match(regex);
+                //     if (match) return !this.options.hasOwnProperty(match[2]);
+
+                //     return false;
+                // },
+                // create: function(input) { //unused funciton?
+                //     if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                //         return {
+                //             email: input
+                //         };
+                //     }
+                //     var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                //     if (match) {
+                //         return {
+                //             email: match[2],
+                //             name: $.trim(match[1])
+                //         };
+                //     }
+                //     alert('Invalid email address.');
+                //     return false;
+                // }
             }).bind(this);
         },
         update: function(obj, callback) {
